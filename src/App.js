@@ -1,27 +1,28 @@
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom"
+  Redirect,
+} from 'react-router-dom'
 
-function App() {
+import { Navbar } from './components/Navbar'
+import DashboardPage from './pages/DashboardPage'
+import PostsPage from './pages/PostsPage'
+import SinglePostPage from './pages/SinglePostPage'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Posts</h1>
-      </header>
-      <Router>
-          <Switch>
-            <Route exact path='/'>
-            </Route>
-            <Route exact path='/forest/:id'>
-            </Route>
-            <Route path='*'>
-            </Route>
-          </Switch>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={DashboardPage} />
+        <Route exact path="/posts" component={PostsPage} />
+        <Route exact path="/posts/:id" component={SinglePostPage} />
+        <Redirect to="/" />
+      </Switch>
     </Router>
-    </div>
-  );
+  )
 }
 
 export default App
